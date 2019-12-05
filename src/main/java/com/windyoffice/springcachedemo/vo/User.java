@@ -1,6 +1,8 @@
 package com.windyoffice.springcachedemo.vo;
 
-public class User {
+import java.io.Serializable;
+
+public class User  implements Serializable {
 
     private Integer age;
 

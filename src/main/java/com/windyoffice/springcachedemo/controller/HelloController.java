@@ -26,4 +26,11 @@ public class HelloController {
     public User getUserInfo(){
         return userService.getUserService("123");
     }
+
+
+    @RequestMapping(value = "/updateuserinfo",method = {RequestMethod.POST})
+    @ResponseBody
+    public User updateUserInfo(){
+        return userService.updateUserInfo("123");
+    }
 }
