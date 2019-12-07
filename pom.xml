@@ -50,6 +50,12 @@
             <artifactId>j2cache-core</artifactId>
             <version>2.7.7-release</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/commons-codec/commons-codec -->
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>1.11</version>
+        </dependency>
 
         <dependency>
             <groupId>net.oschina.j2cache</groupId>
@@ -68,6 +74,12 @@
                 </exclusion>
             </exclusions>
         </dependency>
+
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+            <version>2.6</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -75,6 +87,9 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>com.windyoffice.springcachedemo.SpringcachedemoApplication</mainClass>
+                </configuration>
             </plugin>
         </plugins>
     </build>
