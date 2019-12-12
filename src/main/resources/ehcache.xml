@@ -12,9 +12,9 @@
                   timeToLiveSeconds="600"
                   memoryStoreEvictionPolicy="LFU" />
 
-    <cache name="myCache"
-           eternal="false"
-           maxElementsInMemory="1000"
+    <cache name="userCache"
+           eternal="true"
+           maxElementsInMemory="1"
            overflowToDisk="false"
            diskPersistent="false"
            timeToIdleSeconds="10"

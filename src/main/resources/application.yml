@@ -1,0 +1,57 @@
+server:
+  servlet:
+    context-path: /ifservicedemo
+
+j2cache:
+  config-location: j2cache.properties
+
+sign:
+  publickey:MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCOMG2Op5UOpAXElihMvp/TSkE4dYyFbb7p48pqnFHKu65Z6kKC+dDl/RpWFvoVNHA1V4UpPafTdamzXdOVYYCgU0peZfPMhN2wrTZP7Q956bElov7DHLtKoIvn1uPXSy1ZVy2jpFvleGK3/ekZdRp4FzVs6535lM/5fPHl2ELf4QIDAQAB
+  privatekey:MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAI4wbY6nlQ6kBcSWKEy+n9NKQTh1jIVtvunjymqcUcq7rlnqQoL50OX9GlYW+hU0cDVXhSk9p9N1qbNd05VhgKBTSl5l88yE3bCtNk/tD3npsSWi/sMcu0qgi+fW49dLLVlXLaOkW+V4Yrf96Rl1GngXNWzrnfmUz/l88eXYQt/hAgMBAAECgYBJNgYy/XZyI2IU5nu5iC0izYjnWR8RVICITRFb80Dp8djD0yqL5bT5tmhpC0uYv3dG/9lAcs6Gwn6uLBFVSO7A1H8CBzbB+VM/yYmVE0IfjI6Omtu19hZN5S4Z1q1GCYJlN58UBQGARWdSIKaDhwQkZDUcTXV3jPhaxjw0Kn1/QQJBAO/WO0AdwpAZFlY3Bbp2VQUqUGfH/Xap6mFrqH+n6wLInC+6yf+Hf/kZNNLr9zYjlnJ8UAuPKaIhvIwwYLdLPbcCQQCXxYltgfiY9i4W1cluwBZWKDCP+8XguZWwpqCnqHc3dQOaPu4/jZbZLO4MF3FJOVBIZhT3OpgXtCCME0EaR08nAkEAxxsb7zuFlWkuUP62w7iPFo2tWKr/se6XxK7CoM+/W309pKY2IevUgvC5GM2KWqiqsnqfXSlJz+6f/+X9tM1C+wJASKk58kOXUSQLTMNtfKhaCUWUelp/kedH0xrzL1FoQhSzdNVMGwEehzsLfJ58jiHyXbcBsptK1Y5XRrixInOhYQJAO01fIquZc4RmY+k3vDm3Ybg92Yhzsoi4CdpLozhyrZmg2Ox7pu/RK0p+c1Bqx7UMukYxm76t/GAX7W0m5oIUKA==
+
+logging:
+  config: classpath:logback-spring.xml
+
+spring:
+  datasource:
+    druid:
+      db-type: com.alibaba.druid.pool.DruidDataSource
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://172.17.0.3:3306/mytest?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC
+      username: root
+      password: admin
+      initial-size: 5
+      min-idle: 5
+      max-active: 20
+      # 连接等待超时时间
+      max-wait: 30000
+      # 配置检测可以关闭的空闲连接间隔时间
+      time-between-eviction-runs-millis: 60000
+      # 配置连接在池中的最小生存时间
+      min-evictable-idle-time-millis: 300000
+      validation-query: select 'x'
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      # 打开PSCache，并且指定每个连接上PSCache的大小
+      pool-prepared-statements: true
+      max-open-prepared-statements: 20
+      max-pool-prepared-statement-per-connection-size: 20
+
+
+mybatis:
+  #映射文件所在路径
+  mapper-locations: classpath:mapper/*.xml
+  #pojo类所在包路径
+  type-aliases-package: com.windyoffice.springcachedemo.entity
+  configuration:
+    #配置项：开启下划线到驼峰的自动转换. 作用：将数据库字段根据驼峰规则自动注入到对象属性。
+    map-underscore-to-camel-case: true
+
+
+#pagehelper
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql

@@ -22,7 +22,7 @@ public class CacheConfig {
     public J2CacheCacheManger myCacheManager(){
         J2CacheCacheManger cacheCacheManger=new J2CacheCacheManger(cacheChannel);
         List<String> cacheNames=new ArrayList<>();
-        cacheNames.add("myCache");
+        cacheNames.add("userCache");
         cacheCacheManger.setCacheNames(cacheNames);
         return  cacheCacheManger;
     };
