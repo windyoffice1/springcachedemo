@@ -9,6 +9,7 @@ public class ServerResponse<T> implements Serializable {
 
     private int status;
     private String msg;
+    private String errorCode;
     private T data;
 
     private ServerResponse(int status){
@@ -24,6 +25,18 @@ public class ServerResponse<T> implements Serializable {
         this.status=status;
         this.msg=msg;
         this.data=data;
+    }
+
+    private ServerResponse(String errorCode,int status, String msg, T data){
+        this.errorCode=errorCode;
+        this.status=status;
+        this.msg=msg;
+        this.data=data;
+    }
+
+    private ServerResponse(String errorCode, String msg){
+        this.errorCode=errorCode;
+        this.msg=msg;
     }
 
     private ServerResponse(int status, String msg){
@@ -71,7 +84,7 @@ public class ServerResponse<T> implements Serializable {
         return  new ServerResponse<T>(ResponseCode.ERROR.getCode(),errormsg);
     }
 
-    public  static <T> ServerResponse<T> createByErrorCodeMsg(int errorcode, String  errormsg){
+    public  static <T> ServerResponse<T> createByErrorCodeMsg(String errorcode, String  errormsg){
         return  new ServerResponse<T>(errorcode,errormsg);
     }
 

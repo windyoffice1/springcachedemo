@@ -1,8 +1,8 @@
 package com.windyoffice.springcachedemo.util;
 
-import com.sun.org.apache.xml.internal.security.utils.Base64;
 
 import java.security.Signature;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
@@ -26,7 +26,7 @@ public class SignUtil {
         Signature signature = Signature.getInstance("SHA1WithRSA");
         signature.initVerify(RSAUtil.getPublicKey(publicKey));
         signature.update(content.getBytes("utf-8"));
-        return signature.verify(Base64.decode(sign));
+        return signature.verify(Base64.getDecoder().decode(sign));
     }
     /**
      * map 排序

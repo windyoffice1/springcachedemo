@@ -1,6 +1,5 @@
 package com.windyoffice.springcachedemo.util;
 
-import com.sun.org.apache.xml.internal.security.utils.Base64;
 
 import javax.crypto.Cipher;
 import java.security.*;
@@ -8,6 +7,7 @@ import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -55,7 +55,7 @@ public class RSAUtil {
      * 将base64编码后的公钥字符串转成PublicKey实例
      */
     public static PublicKey getPublicKey(String publicKey) throws Exception{
-            byte[ ] keyBytes= Base64.decode(publicKey.getBytes());
+            byte[ ] keyBytes= Base64.getDecoder().decode(publicKey);
         X509EncodedKeySpec keySpec=new X509EncodedKeySpec(keyBytes);
         KeyFactory keyFactory=KeyFactory.getInstance(KEY_ALGORITHM);
         return keyFactory.generatePublic(keySpec);
@@ -65,7 +65,7 @@ public class RSAUtil {
      * 将base64编码后的私钥字符串转成PrivateKey实例
      */
     public static PrivateKey getPrivateKey(String privateKey) throws Exception{
-        byte[ ] keyBytes= Base64.decode(privateKey.getBytes());
+        byte[ ] keyBytes= Base64.getDecoder().decode(privateKey);
         PKCS8EncodedKeySpec keySpec=new PKCS8EncodedKeySpec(keyBytes);
         KeyFactory keyFactory=KeyFactory.getInstance(KEY_ALGORITHM);
         return keyFactory.generatePrivate(keySpec);
@@ -79,14 +79,14 @@ public class RSAUtil {
         Cipher cipher=Cipher.getInstance(KEY_ALGORITHM);
         cipher.init(Cipher.ENCRYPT_MODE, publicKey);
         byte[] result = cipher.doFinal(content.getBytes(CHARSET_NAME));
-        return Base64.encode(result);
+        return new String(Base64.getEncoder().encode(result)) ;
     }
 
     /**
      * 私钥解密
      */
     public static String decrypt(String content,String private_key) throws Exception {
-        byte[] decodeContent = Base64.decode(content);
+        byte[] decodeContent = Base64.getDecoder().decode(content);
         PrivateKey privateKey = getPrivateKey(private_key);
         Cipher cipher=Cipher.getInstance(KEY_ALGORITHM);
         cipher.init(Cipher.DECRYPT_MODE, privateKey);
@@ -99,7 +99,7 @@ public class RSAUtil {
      * 编码返回字符串
      */
     public static String encryptBASE64(byte[] key) throws Exception {
-        return Base64.encode(key);
+        return new String(Base64.getEncoder().encode(key));
     }
 
     public static void main(String[] args) throws Exception {

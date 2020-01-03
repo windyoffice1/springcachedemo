@@ -8,4 +8,5 @@ public interface IUserService {
 
     ServerResponse<String> addUserInfo(User user);
 
+    ServerResponse<User> findUserById(String id);
 }
