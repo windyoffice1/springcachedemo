@@ -1,4 +1,4 @@
-package com.windyoffice.springcachedemo.interceptor;
+package com.windyoffice.springcachedemo.util;
 
 import javax.servlet.ReadListener;
 import javax.servlet.ServletInputStream;
